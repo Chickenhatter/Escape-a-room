@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://beam6w8jecuyo"]
+
+[ext_resource type="Script" uid="uid://c73pc1dt5rcxd" path="res://BedPlay.gd" id="1_maylj"]
+[ext_resource type="Texture2D" uid="uid://btwe68pulr02i" path="res://icon.svg" id="2_qta8t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8tsra"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qta8t")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tc4b4"]
+
+[sub_resource type="TileSet" id="TileSet_bhb4g"]
+physics_layer_0/collision_layer = 1
+
+[sub_resource type="TileSet" id="TileSet_gtyj7"]
+
+[sub_resource type="TileSet" id="TileSet_m35e0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Player" type="Node2D" parent="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D/Player"]
+script = ExtResource("1_maylj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Player/CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_8tsra")
+animation = &"Right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player/CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_tc4b4")
+
+[node name="Tiles" type="Node2D" parent="Node2D"]
+
+[node name="Hard" type="TileMapLayer" parent="Node2D/Tiles"]
+z_index = -11
+tile_set = SubResource("TileSet_bhb4g")
+
+[node name="Hide" type="TileMapLayer" parent="Node2D/Tiles"]
+z_index = 10
+tile_set = SubResource("TileSet_gtyj7")
+
+[node name="Background" type="TileMapLayer" parent="Node2D/Tiles"]
+z_index = -10
+tile_set = SubResource("TileSet_m35e0")
+
+[node name="Node2D" type="Node2D" parent="Node2D"]
